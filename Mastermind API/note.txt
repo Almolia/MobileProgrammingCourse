@@ -1,0 +1,12 @@
+Salam!
+For this assignment, I used the provided API. I got the parts of the code that send requests to the API from Postman. Basically, I loaded the API in Postman, sent a sample request, and then grabbed the Swift version of the code from the “Code” tab in Postman and used it in my own program.
+
+
+What's Wrong with This API:
+Honestly, this Mastermind API is pretty basic and kinda messy. Like, you can't even tell if you should hit `/game` or `/start` to begin - we had to guess! The documentation is basically non-existent (the docs page doesn't even load properly), and the response format is all over the place. Sometimes it's `game_id`, sometimes maybe `gameId` - who knows? It's like the developers just threw it together without thinking about consistency. Plus, there's zero error handling, so when something breaks, you're just left hanging with no clue what went wrong.
+
+How to Make It Less Terrible:
+First off, they need to pick a lane and stick with it - either use snake_case or camelCase, not both! The API desperately needs proper docs with actual examples that work. They should add better error messages instead of just returning nothing when stuff fails. Also, it needs some basic security - right now anyone can spam requests and probably crash it. Adding things like rate limiting and maybe some simple authentication would be smart. Oh, and please use proper HTTP status codes - 200 for success, 400 for bad requests, 500 for server errors. It's not rocket science!
+
+My Dream Redesign:
+If I were rebuilding this thing, I'd make it way more intuitive. Something like `POST /games` to start a new game, `GET /games/{id}` to check the current state, and `POST /games/{id}/moves` to make a guess. The responses would be super consistent with clear success/error indicators and helpful messages. I'd add proper authentication (maybe just API keys to keep it simple), rate limiting so people can't abuse it, and actual working documentation with interactive examples. Maybe even throw in WebSockets for real-time updates if I'm feeling fancy. Basically, make it something that doesn't make developers want to pull their hair out when trying to use it!
